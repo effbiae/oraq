@@ -43,7 +43,7 @@ Once the environment is set, run ```test.q```:
     a b   c      d                            
     ------------------------------------------
     0 3.1 a      2018.07.01D00:00:00.000000000
-    1 3.2                                     
+    1 3.2
     2 3.3 symbol 2018.07.01D12:00:20.000000000
 
 replacing ```scott```, ```tiger``` and ```localhost/XE``` with your credentials and dblink.

@@ -1,7 +1,7 @@
-#Oraq
+# Oraq
 An oracle driver for q.  _effbiae@gmail.com_
 
-##Overview
+## Overview
 
 If you can connect to your oracle server via sqlplus, oraq will too.
 
@@ -13,7 +13,7 @@ or
 
  - who can download the Oracle instant client (which includes sqlplus)
 
-##Linking
+## Linking
 
 we need to link with clntsh and nnz12.  eg:
 
@@ -28,7 +28,7 @@ You will need to find the ```-L``` directory and the libclntsh.so version using 
         libnnz12.so => /home/jack/o/instantclient_12_2/libnnz12.so (0x00007fa118b21000)
         ...
 
-##Running
+## Running
 
 If necessary, add the directory containing ora.so and the clntsh and nnz12 to ```LD_LIBRARY_PATH```.
 If you don't have a ```TNS_ADMIN``` variable, obtain a tnsnames.ora file from your Oracle administrator
@@ -47,12 +47,12 @@ Once the environment is set, run ```test.q```:
     2 3.3 symbol 2018.07.01D12:00:20.000000000
 
 replacing ```scott```, ```tiger``` and ```localhost/XE``` with your credentials and dblink.
-###test.q
+### test.q
 - creates and populates the table ```x``` in oracle using .ora.p
 - retrieves ```x``` from oracle using .ora.t and compares with the original
 - drops the table to tidy up
 
-##Tuning
+## Tuning
 
 - set .ora.fz to the number of rows to fetch at a time.  (it's set at a low value initially)
 

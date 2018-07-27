@@ -74,5 +74,5 @@ replacing ```scott```, ```tiger``` and ```localhost/XE``` with your credentials 
 
 ## Tuning
 
-- set .ora.fz to the number of rows to fetch at a time.  (it's set at a low value initially)
+- set .ora.fz to the number of rows to fetch at a time  (it's set at a low value initially)
 

@@ -1,9 +1,9 @@
-#Oraq
+# Oraq
 An oracle driver for q.  Get [oraq.tgz](./oraq.tgz)
 
 Support: effbiae@gmail.com.
 
-##Overview
+## Overview
 
 If you can connect to your oracle server via sqlplus, oraq will too.
 
@@ -15,7 +15,7 @@ or
 
  - who can download the Oracle instant client (which includes sqlplus)
 
-##Installing
+## Installing
 
 _sqlplus_
 
@@ -52,7 +52,7 @@ _Note_ the corresponding -L directory and libclntsh version from the ldd command
 
 Make sure ora.so will get loaded by adding its directory to ```LD_LIBRARY_PATH``` or other method.
 
-##Running
+## Running
 
 Run ```test.q```:
 
@@ -67,12 +67,12 @@ Run ```test.q```:
     2 3.3 symbol 2018.07.01D12:00:20.000000000
 
 replacing ```scott```, ```tiger``` and ```localhost/XE``` with your credentials and dblink.
-###test.q
+### test.q
 - creates and populates the table ```x``` in oracle using .ora.p
 - retrieves ```x``` from oracle using .ora.t and compares with the original
 - drops the table to tidy up
 
-##Tuning
+## Tuning
 
 - set .ora.fz to the number of rows to fetch at a time.  (it's set at a low value initially)
 

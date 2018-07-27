@@ -1,9 +1,7 @@
-# Oraq
-An oracle driver for q.  Get [oraq.tgz](./oraq.tgz)
+#Oraq
+An oracle driver for q.  _effbiae@gmail.com_
 
-Support: effbiae@gmail.com.
-
-## Overview
+##Overview
 
 If you can connect to your oracle server via sqlplus, oraq will too.
 
@@ -15,25 +13,13 @@ or
 
  - who can download the Oracle instant client (which includes sqlplus)
 
-## Installing
+##Linking
 
-_sqlplus_
+we need to link with clntsh and nnz12.  eg:
 
-If you don't have a working sqlplus on your system, go to the oracle _Instant Client Downloads_ page and follow the installation instructions.  If you can't connect to your Oracle server with sqlplus, you might need to ask your database admin for a tnsnames.ora file.  
+    ld -shared oraq.o -oora.so -L/home/jack/o/instantclient_12_2 -l:libclntsh.so.12.1 -lnnz12
 
-_Extract the tarball_
-
-    $ mkdir oraq
-    $ cd oraq
-    $ tar xvf oraq.tgz 
-    oraq.o
-    ora.q
-    test.q
-    readme.md
-
-_Link_
-
-Find the link path directory and the libclntsh.so version using ```ldd``` on sqlplus: 
+You will need to find the ```-L``` directory and the libclntsh.so version using ```ldd``` on sqlplus: 
 
     $ ldd `which sqlplus`
         ...
@@ -42,19 +28,13 @@ Find the link path directory and the libclntsh.so version using ```ldd``` on sql
         libnnz12.so => /home/jack/o/instantclient_12_2/libnnz12.so (0x00007fa118b21000)
         ...
 
-_Link to produce ora.so_
+##Running
 
-You will need to link oraq.o (from tarball) with libclntsh and libnnz12 to produce ora.so, the kdb shared library.  eg:
+If necessary, add the directory containing ora.so and the clntsh and nnz12 to ```LD_LIBRARY_PATH```.
+If you don't have a ```TNS_ADMIN``` variable, obtain a tnsnames.ora file from your Oracle administrator
+and set ```TNS_ADMIN``` to the path to tnsnames.ora
 
-    $ ld -shared oraq.o -oora.so -L/home/jack/o/instantclient_12_2 -l:libclntsh.so.12.1 -lnnz12
-
-_Note_ the corresponding -L directory and libclntsh version from the ldd command
-
-Make sure ora.so will get loaded by adding its directory to ```LD_LIBRARY_PATH``` or other method.
-
-## Running
-
-Run ```test.q```:
+Once the environment is set, run ```test.q```:
 
     $ q test.q -user scott -pass tiger -link localhost/XE
     KDB+ 3.5 2017.11.08 Copyright (C) 1993-2017 Kx Systems
@@ -67,12 +47,13 @@ Run ```test.q```:
     2 3.3 symbol 2018.07.01D12:00:20.000000000
 
 replacing ```scott```, ```tiger``` and ```localhost/XE``` with your credentials and dblink.
-### test.q
+###test.q
 - creates and populates the table ```x``` in oracle using .ora.p
 - retrieves ```x``` from oracle using .ora.t and compares with the original
 - drops the table to tidy up
 
-## Tuning
+##Tuning
 
-- set .ora.fz to the number of rows to fetch at a time  (it's set at a low value initially)
+- set .ora.fz to the number of rows to fetch at a time.  (it's set at a low value initially)
+
 

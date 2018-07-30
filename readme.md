@@ -11,15 +11,15 @@ Oraq is currently targeted at linux 64bit users:
 
 or
 
- - who can download the Oracle instant client (which includes sqlplus)
+ - who can download and install the Oracle instant client
 
 ## Linking
 
-we need to link with clntsh and nnz12.  eg:
+we need to link with oracle's clntsh and nnz12.  eg:
 
     ld -shared oraq.o -oora.so -L/home/jack/o/instantclient_12_2 -l:libclntsh.so.12.1 -lnnz12
 
-You will need to find the ```-L``` directory and the libclntsh.so version using ```ldd``` on sqlplus: 
+You can find the ```-L``` directory and the libclntsh.so version using ```ldd``` on sqlplus: 
 
     $ ldd `which sqlplus`
         ...
@@ -30,11 +30,13 @@ You will need to find the ```-L``` directory and the libclntsh.so version using 
 
 ## Running
 
-If necessary, add the directory containing ora.so and the clntsh and nnz12 to ```LD_LIBRARY_PATH```.
-If you don't have a ```TNS_ADMIN``` variable, obtain a tnsnames.ora file from your Oracle administrator
-and set ```TNS_ADMIN``` to the path to tnsnames.ora
+Connect to oracle using sqlplus. eg
 
-Once the environment is set, run ```test.q```:
+    $ sqlplus scott/tiger@localhost/XE
+    > Ctrl-D
+
+replacing ```scott```, ```tiger``` and ```localhost/XE``` with your authorization and dblink.
+Then run ```test.q```:
 
     $ q test.q -user scott -pass tiger -link localhost/XE
     KDB+ 3.5 2017.11.08 Copyright (C) 1993-2017 Kx Systems
@@ -46,7 +48,6 @@ Once the environment is set, run ```test.q```:
     1 3.2
     2 3.3 symbol 2018.07.01D12:00:20.000000000
 
-replacing ```scott```, ```tiger``` and ```localhost/XE``` with your credentials and dblink.
 ### test.q
 - creates and populates the table ```x``` in oracle using .ora.p
 - retrieves ```x``` from oracle using .ora.t and compares with the original

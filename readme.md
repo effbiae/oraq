@@ -26,13 +26,14 @@ You can find the ```-L``` directory and the libclntsh.so version using ```ldd```
 
 ## Running
 
-Connect to oracle using sqlplus. eg
+If necessary, check the connection to oracle using sqlplus. eg
 
     $ sqlplus scott/tiger@localhost/XE
     > Ctrl-D
 
 replacing ```scott```, ```tiger``` and ```localhost/XE``` with your authorization and dblink.
-Then run ```test.q```:
+
+Run ```test.q```:
 
     $ q test.q -user scott -pass tiger -link localhost/XE
     KDB+ 3.5 2017.11.08 Copyright (C) 1993-2017 Kx Systems

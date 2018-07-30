@@ -4,18 +4,14 @@ An oracle driver for q.  _effbiae@gmail.com_
 ## Overview
 
 If you can connect to your oracle server via sqlplus, oraq will too.
-
 Oraq is currently targeted at linux 64bit users:
 
- - with sqlplus installed on their system
-
-or
-
- - who can download and install the Oracle instant client
+As a prerequisite, sqlplus must be installed and connect to your
+oracle server.  Sqlplus can be installed by installing the Oracle Instant Client
 
 ## Linking
 
-we need to link with oracle's clntsh and nnz12.  eg:
+ora.so is produced by linking oraq.o  with oracle's clntsh and nnz12.  eg:
 
     ld -shared oraq.o -oora.so -L/home/jack/o/instantclient_12_2 -l:libclntsh.so.12.1 -lnnz12
 
@@ -56,5 +52,3 @@ Then run ```test.q```:
 ## Tuning
 
 - set .ora.fz to the number of rows to fetch at a time.  (it's set at a low value initially)
-
-
